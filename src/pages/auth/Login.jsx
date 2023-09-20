@@ -4,9 +4,9 @@ import { AiOutlineMail, AiOutlineLock } from "react-icons/ai";
 import { GALLERY } from "../../lib/routes";
 import { useLogin } from "../../hooks/auth";
 import { emailValidate, passwordValidate } from "../../utils/form-validate";
+import { Ring } from "@uiball/loaders";
 
 export default function Login() {
-  // const [isLoading, setLoading] = useState(false);
 
   const { login, isLoginLoading } = useLogin();
 
@@ -33,7 +33,6 @@ export default function Login() {
       return;
     }
 
-    // setLoading(true);
 
     const success = await login({
       email: email,
@@ -46,7 +45,6 @@ export default function Login() {
       setPassword("");
       setErrors({ email: null, password: null });
     }
-    // setLoading(false);
   }
 
   const validateField = (fieldName, value, validationRules) => {
@@ -75,13 +73,12 @@ export default function Login() {
 
   return (
     <div className="w-full h-screen flex flex-col items-center justify-center bg-white">
-      {/* <img src={logo} alt="echo-logo" className='w-[256px] h-[256px]'/> */}
-      <div className="w-[30%] bg-white flex flex-col items-center pt-8 pb-8 pl-2 pr-2">
+      <div className="w-[90%] md:w-[60%] lg:w-[30%] bg-white flex flex-col items-center pt-8 pb-8 pl-2 pr-2">
         <h1 className="text-h5 font-bold font-head text-center">
           Welcome back!
         </h1>
         <p className="text-para text-center">
-          Enter your credentials to access your account.
+          Enter your credentials to see the Gallery.
         </p>
 
         <form onSubmit={handleSignIn} className="mt-8 min-w-[80%]">
@@ -135,31 +132,12 @@ export default function Login() {
           <button
             className={`w-full ${
               isLoginLoading ? "opacity-50" : "opacity-100"
-            } bg-blue-500 text-white rounded-[64px] pt-2 pb-2 mb-8 relative`}
+            } bg-[#1d2951] text-white rounded-[64px] pt-2 pb-2 mb-8 relative`}
             disabled={isLoginLoading ? true : false}
           >
             {isLoginLoading ? (
               <div className="flex items-center justify-center">
-                <svg
-                  className="animate-spin -ml-1 mr-3 h-5 w-5 text-black"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <circle
-                    className="opacity-25"
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    stroke="currentColor"
-                    strokeWidth="4"
-                  ></circle>
-                  <path
-                    className="opacity-75"
-                    fill="currentColor"
-                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.963 7.963 0 014 12H0c0 3.042 1.135 5.842 3 7.938l3-2.647zM20 12a8 8 0 01-8 8v-4a4 4 0 004-4h4zm-2-5.291l3 2.647A7.963 7.963 0 0120 12h4c0-3.042-1.135-5.842-3-7.938z"
-                  ></path>
-                </svg>
+                <Ring />
                 Processing...
               </div>
             ) : (

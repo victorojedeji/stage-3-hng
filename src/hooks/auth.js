@@ -6,9 +6,7 @@ import { useSignOut } from "react-firebase-hooks/auth";
 import { auth } from "../lib/firebase";
 import { GALLERY, LOGIN } from "../lib/routes";
 import { useNavigate } from "react-router-dom";
-// import { doc, getDoc } from "firebase/firestore";
 import toast from "react-hot-toast";
-import isEmailInUse from "../utils/isEmailInUse";
 
 
 export function useAuth() {
@@ -119,7 +117,9 @@ export function useLogout() {
     if (await signOut()) {
       toast.success("Logout Successful!");
       navigate(LOGIN);
-    } else toast.error("Logout Unsuccessful!");
+    } else {
+      toast.error("Logout Unsuccessful!"); 
+    }
   }
 
   return { logout, isLogoutLoading };

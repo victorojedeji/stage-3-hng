@@ -1,13 +1,15 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import Login from "../pages/auth/Login";
-import Layout from "../pages/layout";
+import IndexPage from "../pages/layout";
 import GalleryPage from "../pages/gallery";
+import Auth from "../pages/guardedRoute";
 
 
-export const LAYOUT = "/";
+export const INDEX = "/";
 export const LOGIN= "/login";
-export const GALLERY = "/gallery"
+export const GALLERY = "/auth/gallery";
+export const GUARDEDROUTE = '/auth'
 
 export const router = createBrowserRouter([
   {
@@ -15,11 +17,22 @@ export const router = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: LAYOUT,
-    element: <Layout />,
+    path: INDEX,
+    element: <IndexPage />,
   },
   {
-    path: GALLERY,
-    element: <GalleryPage />,
+    path: GUARDEDROUTE,
+    element: <Auth />,
+    children: [
+      {
+        path: GALLERY,
+        element: <GalleryPage />,
+      },
+    ]
   },
+  {
+    path: INDEX,
+    element: <IndexPage />,
+  },
+
 ]);

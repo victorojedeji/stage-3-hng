@@ -1,13 +1,12 @@
 import { useEffect } from 'react'
 import {useNavigate } from 'react-router-dom';
-import { useAuth } from '../../hooks/auth';
-import { LOGIN } from '../../lib/routes';
+import { GALLERY } from '../../lib/routes';
 
-export default function Layout() {
+export default function IndexPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-      navigate(LOGIN);
+      navigate(GALLERY);
   }, []);
 
   return (
