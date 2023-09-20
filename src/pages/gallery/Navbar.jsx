@@ -4,7 +4,7 @@ import { AiOutlineFilter, AiOutlineLogout } from "react-icons/ai";
 export default function Navbar() {
   return (
     <nav className="w-full py-6 px-8 bg-[#1d2951] flex items-center border-b border-slate-600 mb-4">
-      <h1 className="font-bold text-2xl text-white mr-4">My Gallery</h1>
+      <h1 className="font-bold text-2xl text-white mr-3 whitespace-nowrap">My Gallery</h1>
       <form className="flex items-center gap-1">
         <input
           type="text"
