@@ -9,11 +9,12 @@ export default function Navbar({ onFilterImages }) {
   const [tagInput, setTagInput] = useState("");
 
   const handleTagInputChange = (e) => {
-    setTagInput(e.target.value);
+    const inputText = e.target.value;
+    setTagInput(inputText);
   };
 
   const handleFilterButtonClick = () => {
-    onFilterImages(tagInput);
+    onFilterImages(tagInput.toLowerCase());
   };
 
   const handleLogout = () => {
