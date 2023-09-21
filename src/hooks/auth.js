@@ -1,32 +1,42 @@
 import { useEffect, useState } from "react";
 import {
+  getAuth,
   signInWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
-import { useSignOut } from "react-firebase-hooks/auth";
-import { auth } from "../lib/firebase";
+import { auth, db } from "../lib/firebase";
 import { GALLERY, LOGIN } from "../lib/routes";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { doc, getDoc } from "firebase/firestore";
 
 
 export function useAuth() {
+  const [authUser, authLoading, error] = useAuthState(auth);
+  const [isDataLoading, setDataLoading] = useState(true);
   const [user, setUser] = useState(null);
-  const [userLoading, setUserLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((authUser) => {
-      if (authUser) {
-        setUser(authUser.uid);
-      } else {
-        setUser(null);
-      }
-      setUserLoading(false);
-    });
-    return () => unsubscribe();
-  }, []);
+    async function fetchData() {
+      setDataLoading(true);
+      const ref = doc(db, "users", authUser.uid);
+      const docSnapshot = await getDoc(ref);
 
-  return { user, userLoading };
+      setUser(docSnapshot.data());
+      setDataLoading(false);
+    }
+
+    if (!authLoading) {
+      if (authUser) fetchData();
+      else setDataLoading(false);
+    }
+  }, [authLoading]);
+
+  return { user, isDataLoading, error };
 }
+
+
 
 export function useLogin() {
   const [isLoginLoading, setIsLoginLoading] = useState(false);
@@ -58,6 +68,10 @@ export function useLogin() {
   }
 
 // }
+
+
+
+
 
 // export function useRegister() {
 //   const [isRegisterLoading, setIsRegisterLoading] = useState(false);
@@ -109,18 +123,26 @@ export function useLogin() {
 // }
 
 
-export function useLogout() {
-  const [signOut, isLogoutLoading] = useSignOut(auth);
+function useLogout() {
+  const [isLogoutLoading, setIsLogoutLoading] = useState(false);
   const navigate = useNavigate();
 
-  async function logout() {
-    if (await signOut()) {
-      toast.success("Logout Successful!");
+  const logout = async () => {
+    const auth = getAuth();
+
+    try {
+      setIsLogoutLoading(true); 
+      await signOut(auth);
       navigate(LOGIN);
-    } else {
-      toast.error("Logout Unsuccessful!"); 
+      toast.success("Logout Successful!");
+      setIsLogoutLoading(false);
+    } catch (error) {
+      setIsLogoutLoading(false);
+      toast.success("Logout Unsuccessful!");
     }
-  }
+  };
 
   return { logout, isLogoutLoading };
 }
+
+export default useLogout;

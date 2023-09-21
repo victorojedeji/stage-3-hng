@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { useSignOut } from "react-firebase-hooks/auth";
 import { AiOutlineFilter, AiOutlineLogout } from "react-icons/ai";
+import useLogout from "../hooks/auth";
 
 
 
 export default function Navbar({ onFilterImages }) {
-  const { logout, isLogoutLoading } = useSignOut();
+  const { logout, isLogoutLoading } = useLogout();
   const [tagInput, setTagInput] = useState("");
 
   const handleTagInputChange = (e) => {
@@ -16,6 +16,9 @@ export default function Navbar({ onFilterImages }) {
     onFilterImages(tagInput);
   };
 
+  const handleLogout = () => {
+    logout();
+    }
 
   return (
     <nav className="w-full py-6 px-3 lg:px-8 bg-[#1d2951] flex flex-col justify-center md:flex-row items-center border-b border-slate-600 mb-4">
@@ -44,7 +47,7 @@ export default function Navbar({ onFilterImages }) {
           className={` ${
             isLogoutLoading ? "opacity-50" : "opacity-100"
           } flex gap-2 items-center text-white ml-auto border-2 border-white py-1 px-3 md:py-2 md:px-6  rounded-full hover:bg-red-600 active:bg-red-800`}
-          onClick={logout}
+          onClick={handleLogout}
           disabled={isLogoutLoading ? true : false}
         >
           <AiOutlineLogout className="text-xl" />

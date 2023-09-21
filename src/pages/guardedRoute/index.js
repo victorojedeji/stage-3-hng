@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
-import { GALLERY, LOGIN } from "../../lib/routes";
+import { LOGIN } from "../../lib/routes";
 import { useAuth } from "../../hooks/auth";
 import { Ring } from "@uiball/loaders";
 
@@ -8,12 +8,11 @@ import { Ring } from "@uiball/loaders";
 export default function Auth() {
   const { pathname } = useLocation();
   const navigate = useNavigate();
-
   const { user, isDataLoading } = useAuth();
 
   useEffect(() => {
     if (!isDataLoading && pathname.startsWith("/auth") && !user) {
-      navigate(GALLERY);
+      navigate(LOGIN);
     }
   }, [pathname, user]);
 
