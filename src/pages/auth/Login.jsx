@@ -72,8 +72,8 @@ export default function Login() {
   };
 
   return (
-    <div className="w-full h-screen flex flex-col items-center justify-center bg-white">
-      <div className="w-[90%] md:w-[60%] lg:w-[30%] bg-white flex flex-col items-center pt-8 pb-8 pl-2 pr-2">
+    <div className="w-full h-screen flex flex-col items-center justify-center bg-[#1d2951]">
+      <div className="w-[90%] md:w-[60%] lg:w-[30%] bg-white flex flex-col items-center pt-8 pb-8 pl-2 pr-2 rounded-[16px]">
         <h1 className="text-h5 font-bold font-head text-center">
           Welcome back!
         </h1>
@@ -89,12 +89,12 @@ export default function Login() {
               placeholder="Enter your email"
               className={`block ${
                 errors.email === null ? "mb-4" : "mb-0"
-              } pt-2 pb-2 pr-8 pl-2 w-full rounded-[64px] border-2 border-base focus:outline-none focus:ring focus:border-light placeholder:text-gray-50`}
+              } pt-2 pb-2 pr-8 pl-2 w-full rounded-[64px] border-2 border-base focus:outline-none focus:ring focus:border-[#1d2951] placeholder:text-gray-500`}
               onChange={(e) => setEmail(e.target.value)}
               required
             />
             <span className="absolute right-3 top-1/2 transform -translate-y-1/2">
-              <AiOutlineMail className="text-blue-500" />
+              <AiOutlineMail className="text-[#1d2951]" />
             </span>
           </div>
 
@@ -114,12 +114,12 @@ export default function Login() {
             <input
               type="password"
               placeholder="Enter your password"
-              className="block pt-2 pb-2 pr-8 pl-2 w-full rounded-[64px] border-2 border-base focus:outline-none focus:ring focus:border-light placeholder:text-gray-50"
+              className="block pt-2 pb-2 pr-8 pl-2 w-full rounded-[64px] border-2 border-base focus:outline-none focus:ring focus:border-[#1d2951] placeholder:text-gray-500"
               onChange={(e) => setPassword(e.target.value)}
               required
             />
             <span className="absolute right-3 top-1/2 transform -translate-y-1/2">
-              <AiOutlineLock className="text-blue-500" />
+              <AiOutlineLock className="text-[#1d2951]" />
             </span>
           </div>
 
