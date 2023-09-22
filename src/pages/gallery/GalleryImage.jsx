@@ -31,6 +31,7 @@ const GalleryImage = ({ stateImages, onDragEnd }) => {
                       src={image.webformatURL}
                       alt={image.tags}
                       className="w-full h-full object-cover max-h-[300px]"
+                      loading='lazy'
                     />
                     <div className="bg-white p-2">
                       <h1 className="text-sm capitalize text-slate-500">Tags</h1>

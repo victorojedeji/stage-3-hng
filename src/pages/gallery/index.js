@@ -31,9 +31,9 @@ const GalleryPage = () => {
     const reorderedImages = [...stateImages];
     const [movedImage] = reorderedImages.splice(result.source.index, 1);
     reorderedImages.splice(result.destination.index, 0, movedImage);
-
     setStateImages(reorderedImages);
   };
+  console.log(stateImages)
 
   if (error)
     return (
