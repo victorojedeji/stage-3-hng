@@ -23,7 +23,7 @@ const GalleryPage = () => {
     if (images && images.length > 0) {
       setStateImages(images);
     }
-  }, [images, filterImagesByTags]);
+  }, [images]);
 
   const handleDragEnd = (result) => {
     if (!result.destination) return;
@@ -33,7 +33,6 @@ const GalleryPage = () => {
     reorderedImages.splice(result.destination.index, 0, movedImage);
     setStateImages(reorderedImages);
   };
-  console.log(stateImages)
 
   if (error)
     return (
@@ -71,7 +70,7 @@ const GalleryPage = () => {
   };
 
   return (
-    <div className='bg-[#1d2951] min-h-[100vh] pb-8'>
+    <div className='bg-[#1d2951] min-h-[100vh] pb-12'>
       <Navbar onFilterImages={handleFilterImages} />
       <GalleryImage stateImages={stateImages} onDragEnd={handleDragEnd} />
     </div>

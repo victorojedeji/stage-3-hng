@@ -13,19 +13,19 @@ const GalleryImage = ({ stateImages, onDragEnd }) => {
           <div
             ref={provided.innerRef}
             {...provided.droppableProps}
-            className="grid grid-cols-4 gap-4"
+            className="grid grid-cols-4 gap-4 px-4"
             style={{
               gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
             }}
           >
             {stateImages.map((image, index) => (
-              <Draggable key={image.id.toString()} draggableId={image.id.toString()} index={index}>
+              <Draggable key={image.id} draggableId={image.id.toString()} index={index}>
                 {(provided) => (
                   <div
                     ref={provided.innerRef}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
-                    className="relative p-4 mb-5"
+                    className="relative p-4 mb-8"
                   >
                     <img
                       src={image.webformatURL}

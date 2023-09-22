@@ -26,8 +26,8 @@ export default function Navbar({ onFilterImages }) {
       <h1 className="font-bold text:3xl text-white mr-1 lg:mr-3 whitespace-nowrap mb-3 lg:mb-0">
         Gallery
       </h1>
-      <div className="flex md:ml-auto ">
-        <div className="flex items-center gap-1 mr-2 md:mr-8">
+      <div className="flex md:ml-auto justify-between w-[100%]">
+        <div className="flex items-center gap-1 mr-6 md:mr-8">
           <input
             type="text"
             placeholder="Filter..."
