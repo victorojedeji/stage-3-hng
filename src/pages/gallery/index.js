@@ -73,7 +73,7 @@ const GalleryPage = () => {
   return (
     <div className='bg-[#1d2951] min-h-[100vh] pb-8'>
       <Navbar onFilterImages={handleFilterImages} />
-      <GalleryImage images={stateImages} onDragEnd={handleDragEnd} />
+      <GalleryImage stateImages={stateImages} onDragEnd={handleDragEnd} />
     </div>
   );
 };

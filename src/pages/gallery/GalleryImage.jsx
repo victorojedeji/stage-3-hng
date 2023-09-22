@@ -1,8 +1,9 @@
+import React from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
-const GalleryImage = ({ images, onDragEnd }) => {
-  if (!images || images.length === 0) {
-    return <div className='text-slate-600 italic text-xl w-full h-full flex items-center justify-center'>No images available</div>;
+const GalleryImage = ({ stateImages, onDragEnd }) => {
+  if (!stateImages || stateImages.length === 0) {
+    return <div className='text-2xl text-gray-500 text-center'>Enter a valid tag!</div>; 
   }
 
   return (
@@ -17,7 +18,7 @@ const GalleryImage = ({ images, onDragEnd }) => {
               gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
             }}
           >
-            {images.map((image, index) => (
+            {stateImages.map((image, index) => (
               <Draggable key={image.id.toString()} draggableId={image.id.toString()} index={index}>
                 {(provided) => (
                   <div
