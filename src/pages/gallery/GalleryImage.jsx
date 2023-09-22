@@ -25,12 +25,12 @@ const GalleryImage = ({ stateImages, onDragEnd }) => {
                     ref={provided.innerRef}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
-                    className="relative p-4 mb-8"
+                    className="relative p-4"
                   >
                     <img
                       src={image.webformatURL}
                       alt={image.tags}
-                      className="w-full h-full object-cover max-h-[300px]"
+                      className="w-full object-cover h-[200px]"
                       loading='lazy'
                     />
                     <div className="bg-white p-2">
